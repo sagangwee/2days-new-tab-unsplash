@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" lang="javascript" src="lib/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" lang="javascript" src="lib/jquery.simpleWeather.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>New Tab</title>
+    </head>
+<body>
+    <div id="settings-btn">
+        <i id="settings-icon" class="fa fa-cog fa-2x" aria-hidden="true"></i>
+    </div>
+
+    <div id="settings-menu"  class="popupw">
+        <div id="settings-popup">
+          <button id="upload-btn-id" class="upload-btn"> Change Background </button>
+          <form id="settings-form">
+            <li id="calendar-select">
+                <h5> Calendar List: </h5>
+                <ul id="calendar-list">
+                </ul>
+            <li>
+            <li id="layout-select">
+                <h5> Starting Hour: </h5>
+                <select class="hour-select" name="start-hour" value="6 AM">
+                  <option>1 AM</option>
+                  <option>2 AM</option>
+                  <option>3 AM</option>
+                  <option>4 AM</option>
+                  <option>5 AM</option>
+                  <option>6 AM</option>
+                  <option>7 AM</option>
+                  <option>8 AM</option>
+                  <option>9 AM</option>
+                  <option>10 AM</option>
+                  <option>11 AM</option>
+                  <option>12 PM</option>
+                </select>
+                <h5> Ending Hour: </h5>
+                <select class="hour-select" name="end-hour" value="12 PM">
+                  <option>1 PM</option>
+                  <option>2 PM</option>
+                  <option>3 PM</option>
+                  <option>4 PM</option>
+                  <option>5 PM</option>
+                  <option>6 PM</option>
+                  <option>7 PM</option>
+                  <option>8 PM</option>
+                  <option>9 PM</option>
+                  <option>10 PM</option>
+                  <option>11 PM</option>
+                  <option>12 AM</option>
+                </select>
+                <br>
+            </li>
+            <p id="hour-note"> *Note: Events starting outside of the range will not be displayed </p>
+            <li id="weather-select">
+              <h5> Weather Location: </h5>
+              <input id="location-input" type="text" name="location" value="">
+            </li>
+            <p id="location-note"> Ex: "Berkeley, CA" or "94720" </p>
+            <li id="unit-option">
+              <h5> Units: </h5>
+              <select class="unit-select" name="units" value="&degF">
+                <option>&degF</option>
+                <option>&degC</option>
+              </select>
+              <h5> Format: </h5>
+              <select class="unit-select" name="format">
+                <option>12</option>
+                <option>24</option>
+              </select>
+            </li>
+            <p id="promo"> Plus version coming soon! </p>
+          </form>
+          <button id="submitSetBtn"> Save Settings </button>
+          <button id="cancelSetBtn"> Cancel </button>
+        </div>
+    </div>
+
+    <div id="main-page">
+        <div id="container">
+
+            <div class="vertical">
+                <div class="horizontal">
+                    <div id="bookmarks">
+                        <ul id="bookmark-list">
+                          <li id="bookmark-add" class="single-bookmark"> <p> New Bookmark </p> </li>
+                          <div id="overlay-div"></div>
+                          <div id="add-bookmark" class="popuph">
+                            <form id="bookmark-form">
+                              Bookmark Name:<br>
+                              <input type="text" name="name"><br>
+                              URL:<br>
+                              <input type="text" name="url"><br>
+                              Folder:<br>
+                              <select id="folders" name="folders">
+                                <option>Default</option>
+                              </select> <br>
+                              <button id="bookmark-create"> Add Bookmark </button> <br> <br>
+                            </form>
+                            <form id="folder-form">
+                              Folder Name:
+                              <input type="text" name="name"><br>
+                              <button id="folder-create"> Add Folder </button>
+                            </form>
+                          </div>
+                        </ul>
+                    </div>
+
+                    <div id="notes">
+                        <p> Notes </p> <br>
+                        <textarea id="note-box" name="paragraph_text" spellcheck="false"></textarea>
+                    </div>
+                </div>
+
+                <div id="clock" class="vertical">
+                    <div id="hour-minute"></div>
+                    <div id="day-month-date-year"></div>
+                </div>
+
+            </div>
+
+            <div class="vertical">
+
+                <div id="weather">
+
+                </div>
+
+                <div id="calendar-header">
+                        <!-- <div id="header-spacer"> </div> -->
+                        <div id="date-back"> <span>&#8249;</span> </div>
+                        <div id="date-forward"> <span>&#8250;</span> </div>
+                        <h1 id="today-title" class="day-title"> Today </h1>
+                        <h1 id="tomorrow-title" class="day-title"> Tomorrow </h1>
+                        <div id="authorize-div">
+                            <div id="authorize-button" class="calendar-btn"> <p> Login </p> </div>
+                        </div>
+                </div>
+
+                <div id="calendar">
+
+                    <div id="time-labels">
+                        <ul id="time-list" class="events-list">
+                        </ul>
+                    </div>
+
+                    <div id="today">
+                      <ul id="today-list" class="events-list">
+                      </ul>
+                    </div>
+
+                    <div id="tomorrow">
+                      <ul id="tomorrow-list" class="events-list">
+                      </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+         </div>
+    </div>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://apis.google.com/js/client.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    <script type="text/javascript" lang="javascript" src="js/background.js"></script>
+    <script type="text/javascript" lang="javascript" src="js/layout.js"></script>
+    <script type="text/javascript" lang="javascript" src="js/bookmarks.js"></script>
+    <script type="text/javascript" lang="javascript" src="js/weather.js"></script>
+    <script type="text/javascript" lang="javascript" src="js/clock.js"></script>
+    <script type="text/javascript" lang="javascript" src="js/settings.js"></script>
+    <script type="text/javascript" lang="javascript" src="js/notes.js"></script>
+    <script type="text/javascript" lang="javascript" src="js/calendar.js"></script>
+</body>
+</html>
