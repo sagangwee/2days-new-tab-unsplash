@@ -2,16 +2,28 @@ var imgurl = localStorage.getItem("background-img");
 var refreshIntervalId = setInterval(function() {
   var imgurl = localStorage.getItem("background-img");
   if (imgurl) {
-      document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + imgurl;
-      clearInterval(refreshIntervalId);
+    document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + imgurl;
+    clearInterval(refreshIntervalId);
   } else {
-      document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 255, 0.3), rgba(0, 0, 255, 0.3) )";
+    getRandomUnsplashImage();
   }
 }, 1);
 
 var old;
 var btn = document.getElementById("upload-btn-id")
 btn.addEventListener("click", showUploadBtn);
+const unsplashURL = "https://api.unsplash.com/";
+
+function getRandomUnsplashImage() {
+  $.get(
+    unsplashURL + "/photos/random",
+    {"orientation" : "landscape"},
+    function(data) {
+      const imageUrl = data.urls.raw;
+      document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + imageURL;
+    }
+);
+}
 
 function showUploadBtn() {
     var x = document.createElement("INPUT");
