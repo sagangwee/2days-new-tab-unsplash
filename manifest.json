@@ -4,7 +4,7 @@
     "manifest_version": 2,
     "name": "2Day's New Tab Unsplash",
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh6E9ypi8J6edBMI3XG3egnG6+QXsUUMDXMb3NcxfzZtwKCEJS0+WgnOIxcIHI25aGROrveuOGyapLz6T14kd5W810DF4HrPjLHkBwNmLAq046tP3Zrwumw+CW7khC36Ow2/d3B6TmFNt9EVylg73UKCHHhva7S2R8gy72MhYO3hS+tuEH4cabgsdcQ8T7uXMf/a0dMXKiUNKxgn6zwOtqOnGDNtpoo6GQtR0FiP2nG7+K/EKCpVakx1Lr6dPupkSrVm2/EGDI+hd+MAXEfBioBpUpxEFQTVbWUI3tKaNpR5lNHx0aAvUjUZK53b9SJJjWgFGiHXRfgHGu30ZEIgY4QIDAQAB",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "description": "A functional new tab page that displays Google Calendar events, custom bookmarks, and a weekly weather forecast.",
     "permissions": [
         "activeTab",

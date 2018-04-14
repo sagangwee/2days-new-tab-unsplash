@@ -27,17 +27,15 @@ function getRandomUnsplashImage() {
     unsplashURL + "/photos/random/" + accessKey,
     {"orientation" : "landscape"},
     function(data) {
-      console.log(data.links.download_location);
       const imageUrl = data.urls.raw;
       if (data.errors) {
         console.log(data.errors);
       }
-      $('#unsplash-author-link').attr("href", data.user.links.self);
+      $('#unsplash-author-link').attr("href", data.user.links.html);
       $('#unsplash-author-link').text(data.user.name);
-      console.log(imageUrl);
       document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + `url(${imageUrl})`;
     }
-);
+  );
 }
 
 function showUploadBtn() {
