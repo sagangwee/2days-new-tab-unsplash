@@ -13,7 +13,7 @@ var old;
 var btn = document.getElementById("upload-btn-id")
 btn.addEventListener("click", showUploadBtn);
 const unsplashURL = "https://api.unsplash.com";
-const accessKey = "?client_id=3d8111e69c640e53830744a10af75c353f60247e6480a6ebe24f6886a7b08bb3";
+const accessKey = "?client_id=d836aa06071e146507104cb6ea769fce4eb40f9bd2d34bca0d857f8759207b6f";
 
 if (imgurl) {
   document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + imgurl;
@@ -27,13 +27,15 @@ function getRandomUnsplashImage() {
     unsplashURL + "/photos/random/" + accessKey,
     {"orientation" : "landscape"},
     function(data) {
-      const imageUrl = data.links.download_location;
+      console.log(data.links.download_location);
+      const imageUrl = data.urls.raw;
       if (data.errors) {
         console.log(data.errors);
       }
-      $('#unsplash-author-link').attr("href", data.urls.raw);
-      console.log(imageURL);
-      document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + `url(${imageURL})`;
+      $('#unsplash-author-link').attr("href", data.user.links.self);
+      $('#unsplash-author-link').text(data.user.name);
+      console.log(imageUrl);
+      document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + `url(${imageUrl})`;
     }
 );
 }
