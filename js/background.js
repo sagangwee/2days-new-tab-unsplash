@@ -1,26 +1,39 @@
 var imgurl = localStorage.getItem("background-img");
-var refreshIntervalId = setInterval(function() {
-  var imgurl = localStorage.getItem("background-img");
-  if (imgurl) {
-    document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + imgurl;
-    clearInterval(refreshIntervalId);
-  } else {
-    getRandomUnsplashImage();
-  }
-}, 1);
+// var refreshIntervalId = setInterval(function() {
+//   var imgurl = localStorage.getItem("background-img");
+//   if (imgurl) {
+//     document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + imgurl;
+//     clearInterval(refreshIntervalId);
+//   } else {
+//     getRandomUnsplashImage();
+//   }
+// }, 1);
 
 var old;
 var btn = document.getElementById("upload-btn-id")
 btn.addEventListener("click", showUploadBtn);
-const unsplashURL = "https://api.unsplash.com/";
+const unsplashURL = "https://api.unsplash.com";
+const accessKey = "?client_id=3d8111e69c640e53830744a10af75c353f60247e6480a6ebe24f6886a7b08bb3";
+
+if (imgurl) {
+  document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + imgurl;
+  clearInterval(refreshIntervalId);
+} else {
+  getRandomUnsplashImage();
+}
 
 function getRandomUnsplashImage() {
   $.get(
-    unsplashURL + "/photos/random",
+    unsplashURL + "/photos/random/" + accessKey,
     {"orientation" : "landscape"},
     function(data) {
-      const imageUrl = data.urls.raw;
-      document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + imageURL;
+      const imageUrl = data.links.download_location;
+      if (data.errors) {
+        console.log(data.errors);
+      }
+      $('#unsplash-author-link').attr("href", data.urls.raw);
+      console.log(imageURL);
+      document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), " + `url(${imageURL})`;
     }
 );
 }

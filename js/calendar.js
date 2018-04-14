@@ -3,7 +3,7 @@ window.onload = getSettings;
 //var CLIENT_ID = '559223177845-orlvkhl9pkq9jf7f98gf7qepmp6iuqda.apps.googleusercontent.com'; //thinkpad
 //var CLIENT_ID = '559223177845-tlcomk97jck9d9tjdr27hgs3eu95b5qi.apps.googleusercontent.com'; //desktop
 //var CLIENT_ID = "559223177845-v4du335uoum4at9s27ego1qetif666db.apps.googleusercontent.com" //desktop local
-var CLIENT_ID = '559223177845-t78ldg5pg7t7nqlskkuksqa6r3sl6l2e.apps.googleusercontent.com'; //published
+var CLIENT_ID = '185110772501-7o6blhv7hohp1263fbb83q6k2ktrkb3e.apps.googleusercontent.com'; //published
 
 var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly",
             "https://www.googleapis.com/auth/plus.login",
@@ -11,7 +11,7 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly",
             "https://www.googleapis.com/auth/calendar",
             "https://www.googleapis.com/auth/plus.me"];
 
-var apiKey = "AIzaSyCdneDaG1uHV0gxjmmw6znWcemFamIy_yA"
+var apiKey = "AIzaSyDgxHl7znns85izfNKBD6pqIQgRTrw1J2k"
 var accessToken;
 
 var today = new Date();
@@ -191,20 +191,20 @@ function handleListOfCalendars(response) {
     tomorrowList.numDayItems = 0;
     todayList.indexes = [];
     tomorrowList.indexes = [];
-    
+
     var label = document.getElementById("time-labels").children[0].children[0];
     label.style.height = 0 + "px";
-    
+
     for (i = 0; calendar_list.children.length > 0; i++) {
       calendar_list.removeChild(calendar_list.children[0]);
     }
-    
+
     //Naive Synchronization (Only display if last API call)
     cal_counter--;
     if (cal_counter !== 0) {
       return;
     }
-    
+
     var calendarList = response.items;
     for (var i = 0; i < calendarList.length; i++) {
         var cid = calendarList[i].id;
@@ -222,7 +222,7 @@ function handleListOfCalendars(response) {
 }
 
 function getUpcomingEvents(cal) {
-  
+
   //CLear Displayed Events
   for (i = 0; i < todayList.children.length; i++) {
     slot = todayList.children[i]
@@ -243,7 +243,7 @@ function getUpcomingEvents(cal) {
       slot.numItems = null;
     }
   }
-  
+
   todayList.children[0].style.height = "0px";
   tomorrowList.children[0].style.height = "0px";
 
@@ -263,7 +263,7 @@ function getUpcomingEvents(cal) {
   };
   xhr.responseType = "json";
   xhr.send(null);
-  
+
   // var request = gapi.client.calendar.events.list({
   //   'calendarId': cal.id,
   //   'timeMin': (new Date(today.getFullYear(), today.getMonth(), today.getDate())).toISOString(),
@@ -412,7 +412,7 @@ function displayAllDayEvent(event, calColor) {
     div.style.background = colorStr;
     div.style.height = "20px";
   }
-  
+
   if (slot.children.length) {
     div.defaultZIndex = slot.children[slot.children.length - 1].style.zIndex;
     slot.insertBefore(div, slot.children[0]);
@@ -581,7 +581,7 @@ function date_back() {
   today_label.innerHTML = dayList[today.getDay()] + " " + (today.getMonth()+1) + "/" + today.getDate();
   tomorrow_label.innerHTML = dayList[tomorrow.getDay()] + " " + (tomorrow.getMonth()+1) + "/" + tomorrow.getDate();
   getListofCalendars();
-  
+
 }
 
 function date_forward() {
@@ -591,7 +591,7 @@ function date_forward() {
   today_label.innerHTML = dayList[today.getDay()] + " " + (today.getMonth()+1) + "/" + today.getDate();
   tomorrow_label.innerHTML = dayList[tomorrow.getDay()] + " " + (tomorrow.getMonth()+1) + "/" + tomorrow.getDate();
   getListofCalendars();
-  
+
 }
 
 date_back_btn.addEventListener("click", date_back);
